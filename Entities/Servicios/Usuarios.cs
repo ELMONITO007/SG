@@ -18,6 +18,14 @@ namespace Entities
 		public string Nombre { get; set; }
 		public string Apellido { get; set; }
 		public string Tipo { get; set; }
+		public List<Roles> roles { get; set; }
+		public Roles unRol { get; set; }
+
+        public Usuarios()
+        {
+			roles = new List<Roles>();
+			unRol = new Roles();
+        }
 
 	}
 }
