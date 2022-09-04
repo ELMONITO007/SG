@@ -50,6 +50,22 @@
   <ItemGroup>
     <Compile Include="DataAccessComponent.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="Negocio\Herramienta\CodigoHerramientaDAC.cs" />
+    <Compile Include="Negocio\Herramienta\HerramientaDAC.cs" />
+    <Compile Include="Negocio\Herramienta\HerramientaItemDAC.cs" />
+    <Compile Include="Negocio\Herramienta\InstrumentoDAC.cs" />
+    <Compile Include="Negocio\Herramienta\ItemHerramientaDAC.cs" />
+    <Compile Include="Negocio\Herramienta\TipoHerramientaDAC.cs" />
+    <Compile Include="Negocio\LaboratorioDAC.cs" />
+    <Compile Include="Negocio\Protocolos\ItemNormaDAC.cs" />
+    <Compile Include="Negocio\Protocolos\NormaDAC.cs" />
+    <Compile Include="Negocio\Protocolos\ProtocoloDAC.cs" />
+    <Compile Include="Negocio\Protocolos\ProtocoloItemDAC.cs" />
+    <Compile Include="OT\CargaInicialHerramientaDAC.cs" />
+    <Compile Include="OT\EstadoOrdenEnsayoDAC.cs" />
+    <Compile Include="OT\OrdenTrabajoDAC.cs" />
+    <Compile Include="OT\OrdenTrabajoEstadoDAC.cs" />
+    <Compile Include="OT\TurnoDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\RolesDAC.cs" />
     <Compile Include="Servicios\UsuarioDac.cs" />
@@ -63,6 +79,9 @@
       <Project>{d5f56199-0277-47d0-962f-3844534ff738}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Negocio\Herramienta\Pertigas\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

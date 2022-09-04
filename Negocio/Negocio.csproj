@@ -31,20 +31,92 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.11.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.11.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=6.0.7.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.0.7\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.0.0\lib\net452\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.0.0\lib\net452\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SpreadsheetLight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.5.0\lib\netstandard2.0\SpreadsheetLight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.7.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="zxing, Version=0.16.8.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.8\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.8.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.8\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Component.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="Negocio\Herramienta\CodigoHerramientaComponent.cs" />
+    <Compile Include="Negocio\Herramienta\HerramientaComponent.cs" />
+    <Compile Include="Negocio\Herramienta\HerramientaItemComponent.cs" />
+    <Compile Include="Negocio\Herramienta\InstrumentoComponent.cs" />
+    <Compile Include="Negocio\Herramienta\itemHerramientaComponent.cs" />
+    <Compile Include="Negocio\Herramienta\Pertiga\PertigaUniversalComponent.cs" />
+    <Compile Include="Negocio\Herramienta\TipoHerramientaComponent.cs" />
+    <Compile Include="Negocio\LaboratorioComponent.cs" />
+    <Compile Include="Negocio\Manejadores\Archivo.cs" />
+    <Compile Include="Negocio\Manejadores\Fechas.cs" />
+    <Compile Include="Negocio\Manejadores\ManejadorArchivo.cs" />
+    <Compile Include="Negocio\Manejadores\ObtenerClaseHerramienta.cs" />
+    <Compile Include="Negocio\Manejadores\Texto.cs" />
+    <Compile Include="Negocio\OT\CargaInicialHerramientaComponent.cs" />
+    <Compile Include="Negocio\OT\EstadoOrdenEnsayoComponent.cs" />
+    <Compile Include="Negocio\OT\ExcelComponent.cs" />
+    <Compile Include="Negocio\OT\OrdenTrabajoComponent.cs" />
+    <Compile Include="Negocio\OT\OrdenTrabajoEstadoComponent.cs" />
+    <Compile Include="Negocio\OT\TurnoComponent.cs" />
+    <Compile Include="Negocio\Protocolo\ItemNormaComponent.cs" />
+    <Compile Include="Negocio\Protocolo\NormaComponent.cs" />
+    <Compile Include="Negocio\Protocolo\ProtocoloComponent.cs" />
+    <Compile Include="Negocio\Protocolo\ProtocoloItemComponent.cs" />
+    <Compile Include="Negocio\Protocolo\ProtocoloMasivo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\LoginComponent.cs" />
+    <Compile Include="Servicios\QR.cs" />
     <Compile Include="Servicios\RolesComponent.cs" />
     <Compile Include="Servicios\UsuarioRolesComponent.cs" />
     <Compile Include="Servicios\UsuariosComponent.cs" />
@@ -58,6 +130,9 @@
       <Project>{d5f56199-0277-47d0-962f-3844534ff738}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

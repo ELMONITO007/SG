@@ -1,0 +1,73 @@
+﻿@model Entities.Laboratorio
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="content-body">
+        <div class="container-fluid">
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+
+                            <h4 class="card-title">Editar el @Model.nombre</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="needs-validation" novalidate>
+                                  
+                                    
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom01">
+                                                    Nombre
+                                                    <span class="text-danger"></span>
+                                                </label>
+                                              
+
+                                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @id = "validationCustom01" } })
+
+                                                    
+                                              
+                                            </div>
+                                            @Html.HiddenFor(model=>model.Id)
+                                            <div class="mb-xl-5 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom02">
+                                                   Datos
+
+                                                </label>
+
+
+                                                    @Html.EditorFor(model => model.piePagina, new { htmlAttributes = new { @class = "form-control", @id = "validationCustom01" } })
+
+                                               
+                                            </div>
+                                          
+
+                               
+                                        <br />
+                                        <div class="mb-6 row">
+                                            <div class="col-lg-8 ms-auto">
+                                                <button type="submit" class="btn btn-primary">Editar</button>
+                                            </div>
+                                        </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+

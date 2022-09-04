@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,6 +45,27 @@
     <Compile Include="Encriptacion\Enciptador.cs" />
     <Compile Include="Encriptacion\EncriptarSHA256.cs" />
     <Compile Include="EntityBase.cs" />
+    <Compile Include="Negocio\excel.cs" />
+    <Compile Include="Negocio\Herramientas\CodigoHerramienta.cs" />
+    <Compile Include="Negocio\Herramientas\Herramienta.cs" />
+    <Compile Include="Negocio\Herramientas\HerramientaItem.cs" />
+    <Compile Include="Negocio\Herramientas\Instrumento.cs" />
+    <Compile Include="Negocio\Herramientas\ItemHerramienta.cs" />
+    <Compile Include="Negocio\Herramientas\Pertigas\iPertiga.cs" />
+    <Compile Include="Negocio\Herramientas\Pertigas\PertigaBaston.cs" />
+    <Compile Include="Negocio\Herramientas\Pertigas\PertigaTensoras.cs" />
+    <Compile Include="Negocio\Herramientas\Pertigas\PertigaUniversal.cs" />
+    <Compile Include="Negocio\Herramientas\TipoHerramienta.cs" />
+    <Compile Include="Negocio\ItemNorma.cs" />
+    <Compile Include="Negocio\Laboratorio.cs" />
+    <Compile Include="Negocio\Norma.cs" />
+    <Compile Include="Negocio\Protocolo.cs" />
+    <Compile Include="Negocio\ProtocoloItem.cs" />
+    <Compile Include="OT\CargaInicialHerramienta.cs" />
+    <Compile Include="OT\EstadoOrdenEnsayo.cs" />
+    <Compile Include="OT\OrdenTrabajo.cs" />
+    <Compile Include="OT\OrdenTrabajoEstado.cs" />
+    <Compile Include="OT\Turno.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\LoginError.cs" />
     <Compile Include="Servicios\Roles.cs" />

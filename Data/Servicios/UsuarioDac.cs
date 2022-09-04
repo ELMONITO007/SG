@@ -146,7 +146,21 @@ namespace Data
             }
             return usuarios;
         }
-
+        public Usuarios update(Usuarios entity)
+        {
+            const string SQL_STATEMENT = "update usuario set UserName=@userName, Email=@email,Nombre=@nombre,Apellido=@apellido where id=@Id";
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@UserName", DbType.String, entity.UserName);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, entity.Id);
+                db.AddInParameter(cmd, "@apellido", DbType.String, entity.Apellido);
+                db.AddInParameter(cmd, "@nombre", DbType.String, entity.Nombre);
+                db.AddInParameter(cmd, "@email", DbType.String, entity.Email);
+                db.ExecuteNonQuery(cmd);
+            }
+            return entity;
+        }
         public void Update(Usuarios entity)
         {
             const string SQL_STATEMENT = "update Usuario set password=@password  where id=@Id";
@@ -175,6 +189,49 @@ namespace Data
                 db.ExecuteNonQuery(cmd);
             }
         }
+
+        #region LaboratorioUsuario
+        public List<Usuarios> ReadByTipoRol(string Id_roles)
+        {
+            const string SQL_STATEMENT = "select u.Id,u.UserName,u.DVH from AspNetUserRoles as ur inner join AspNetRoles as r on ur.RoleId=r.Id inner join Usuario as u on u.Id=ur.UserId where r.activo=1 and u.activo=1 and r.tipo=@RoleId";
+            List<Usuarios> result = new List<Usuarios>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@RoleId", DbType.String, Id_roles);
+
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        Usuarios usuarioRoles = LoadUsuarioa(dr);
+                        result.Add(usuarioRoles);
+                    }
+                }
+            }
+            return result;
+        }
+        public List<Usuarios> ReadbyUsuariosDeUnLaboratorio(int id)
+        {
+            const string SQL_STATEMENT = "select * from LaboratorioUsuario as lu join Laboratorio as l on l.id_Laboratorio=lu.id_Laboratorio join Usuario as u on u.Id=lu.id where l.id_Laboratorio=@Id";
+
+            List<Usuarios> result = new List<Usuarios>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        Usuarios categoria = LoadUsuarioa(dr);
+                        result.Add(categoria);
+                    }
+                }
+            }
+            return result;
+        }
+        #endregion
 
     }
 }

@@ -1,0 +1,38 @@
+﻿@model Entities.Laboratorio
+
+
+@{Layout=" ~/Views/Shared/_Layout.cshtml";}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="vh-100">
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-7">
+                    <div class="form-input-content text-center error-page">
+                        @Html.Hidden("usuario",Model.Id)
+                        <h4><i class="fa fa-exclamation-triangle text-warning"></i> Esta seguro de eliminar el permiso de @Model.usuarios[0].UserName al  @Model.nombre </h4>
+                        <p>Si no desea eliminarla vuelva atras</p>
+                        <div>
+                            <a class="btn btn-primary" href="/Laboratorio/index">Volver</a>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <button type="submit" class="btn btn-secondary">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+
+}
+
+
+

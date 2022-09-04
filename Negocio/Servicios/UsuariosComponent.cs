@@ -147,9 +147,19 @@ namespace Negocio
 
         public override List<Usuarios> Read()
         {
-            List<Usuarios> result = default(List<Usuarios>);
+            List<Usuarios> result =  new List<Usuarios>();
             var usuario = new UsuarioDac();
-            result = usuario.Read();
+            foreach (var item in usuario.Read())
+            {
+                UsuarioRolesComponent usuarioRoles = new UsuarioRolesComponent();
+                foreach (var rol in usuarioRoles.ReadByUsuario(item.Id))
+                {
+                    item.roles.Add(
+                        rol.roles);
+                }
+                result.Add(item);
+            }
+            
             return result;
         }
       
@@ -169,11 +179,14 @@ namespace Negocio
             return result;
         }
 
-       
 
-        public override void Update(Usuarios objeto)
+
+        public Usuarios update(Usuarios objeto)
         {
-            throw new NotImplementedException();
+            UsuarioDac usuarioDac = new UsuarioDac();
+            return usuarioDac.update(objeto);
+
+
         }
 
         public Usuarios ReadByEmail(string emailUsername)
@@ -187,7 +200,57 @@ namespace Negocio
         {
             throw new NotImplementedException();
         }
+        #region LaboratorioUsuario
+        public List<Usuarios> ReadbyUsuariosLaboratorioDisponible(int id_Laboratorio)
 
+        {
+            UsuarioDac usuarioDac = new UsuarioDac();
+            List<Usuarios> usuarioLaboratorio = new List<Usuarios>();
+            usuarioLaboratorio = ReadbyUsuariosDeUnLaboratorio(id_Laboratorio);
+            List<Usuarios> todosUsuariosLaboratorio = new List<Usuarios>();
+
+            todosUsuariosLaboratorio = usuarioDac.ReadByTipoRol("Laboratorio");
+            List<Usuarios> result = new List<Usuarios>();
+
+            foreach (Usuarios item in todosUsuariosLaboratorio)
+            {
+                int a = 0;
+
+                foreach (var subItem in usuarioLaboratorio)
+                {
+                    if (subItem.Id == item.Id)
+                    {
+                        a = 1;
+                    }
+
+                }
+                if (a == 0)
+                {
+                    result.Add(item);
+                }
+
+
+
+            }
+
+
+
+            return result;
+        }
+
+        public List<Usuarios> ReadbyUsuariosDeUnLaboratorio(int rol)
+        {
+
+            UsuarioDac usuarioDac = new UsuarioDac();
+
+            return usuarioDac.ReadbyUsuariosDeUnLaboratorio(rol);
+        }
+
+        public override void Update(Usuarios objeto)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
     }
 }
