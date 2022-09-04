@@ -1,0 +1,92 @@
+﻿@model Entities.TipoHerramienta
+@using System.Text.RegularExpressions
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="d-flex align-items-center mb-4 flex-wrap">
+            <h4 class="fs-20 font-w600  me-auto">Detalles de @Model.tipoHerramienta</h4>
+
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-xxl-4">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header border-0 pb-0">
+                                <h4 class="fs-20 mb-0">Datos</h4>
+                            </div>
+                            <div class="card-body pt-4">
+                                <div class="mb-3 d-flex">
+                                    <h5 class="mb-1 fs-14 custom-label">Tipo:</h5>
+                                    <span>@Model.subTipo</span>
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <h5 class="mb-1 fs-14 custom-label">Uso:</h5>
+                                    <span>@Model.tipoUso</span>
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <h5 class="mb-1 fs-14 custom-label">Tipo Ensayo:</h5>
+                                    <span>@Model.tipoEnsayo</span>
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <h5 class="mb-1 fs-14 custom-label">Norma:</h5>
+                                    <span>@Model.norma.codigoNorma</span>
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <h5 class="mb-1 fs-14 custom-label">Nombre Norma:</h5>
+                                    <span>@Model.norma.nombre</span>
+                                </div>
+                                @{string pagina = "/"+Regex.Replace(Model.tipoHerramienta, @"\s", "") ;}
+
+
+                                <a href="@pagina" class="btn btn-info btn-sm mb-3" style="margin-left:75px"><i class="fas fa-tools me-2 "></i>Ver Equipos</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-xxl-8">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header d-block">
+                                <h4 class="fs-20 d-block">Datos de la norma: @Model.norma.codigoNorma</a></h4>
+
+                            </div>
+                            <div class="card-body">
+                                <h4 class="fs-20 mb-3">Items</h4>
+                                <div class="ms-4">
+                                    @foreach (var item in Model.norma.listadoNormas)
+                                    {
+                                        <p><i class="fas fa-dot-circle me-2"></i>@item.nombre </p>
+                                    }
+                                    <div class="card-footer border-0 pt-0 ">
+
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-3"><i class="fas fa-info me-2 "></i>Agregar Items</a>
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <h4 class="fs-20 mb-3">Resumen de la norma</h4>
+                                <div class="row mb-3">
+
+                                    @Model.norma.protocolo
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

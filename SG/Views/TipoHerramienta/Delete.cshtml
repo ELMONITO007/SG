@@ -1,0 +1,39 @@
+﻿@model Entities.TipoHerramienta
+
+
+@{Layout=" ~/Views/Shared/_Layout.cshtml";}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="vh-100">
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-7">
+                    <div class="form-input-content text-center error-page">
+
+                        <h4><i class="fa fa-exclamation-triangle text-warning"></i> Esta seguro de eliminar la TipoHerramienta </h4>
+                        <p>Si no desea eliminarla vuelva atras</p>
+                        @Html.HiddenFor(model=>model.Id)
+                        <div>
+                            <a class="btn btn-primary" href="/TipoHerramienta/index">Volver</a>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <button type="submit" class="btn btn-secondary">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+
+}
+
+
+

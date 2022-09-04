@@ -1,0 +1,95 @@
+﻿@model Entities.TipoHerramienta
+
+
+@{Layout = " ~/Views/Shared/_Layout.cshtml";}
+
+
+
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="content-body">
+
+
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Crear un TipoHerramienta</h4>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="form-validation">
+                        <form class="needs-validation" novalidate>
+
+                            <div class="row">
+
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="col-xl-6">
+                                  Nombre
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.tipoHerramienta, new { htmlAttributes = new { @class = "form-control" , @maxlength = "150", @required = "required", @minlength = "15" } })
+                                        @Html.ValidationMessageFor(model => model.tipoHerramienta, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    @Html.LabelFor(model => model.norma.codigoNorma, htmlAttributes: new { @class = "col-lg-4 col-form-label" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.norma.codigoNorma, (SelectList)ViewBag.norma as SelectList, new { @class = "nice-select me-sm-2 default-select form-control wide" })
+                                       
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    @Html.LabelFor(model => model.subTipo, htmlAttributes: new { @class = "col-lg-4 col-form-label" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.subTipo, (SelectList)ViewBag.subTipo as SelectList, new { @class = "nice-select me-sm-2 default-select form-control wide" })
+
+                                        <br />
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    @Html.LabelFor(model => model.tipoEnsayo, htmlAttributes: new { @class = "col-lg-4 col-form-label" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.tipoEnsayo, (SelectList)ViewBag.tipoEnsayo as SelectList, new { @class = "nice-select me-sm-2 default-select form-control wide" })
+                                     
+                                        <br />
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    @Html.LabelFor(model => model.tipoUso, htmlAttributes: new { @class = "col-lg-4 col-form-label" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.tipoUso, (SelectList)ViewBag.tipoUso as SelectList, new { @class = "nice-select me-sm-2 default-select form-control wide" })
+
+                                     
+                                        <br />
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="mb-6 row">
+                                    <div class="col-lg-8 ms-auto">
+                                        <button type="submit" class="btn btn-primary">Crear</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
