@@ -114,7 +114,7 @@
 
                                             @{
 
-                                                string d = "/Norma/delete/" + item.Id; }
+                                                string d = "/ItemNorma/delete/" + item.Id; }
                                             <td>
 
                                                 <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa bi-arrow-down"></i></a>
@@ -128,7 +128,7 @@
 
                         </div>
                     </div>
-                    <input type="button" class="btn btn-outline-primary " style="float:right;margin-right:15px" value="Crear" onclick="location.href='@Url.Action("create", "itemNorma", new { id=Model.Id})'" />
+                    <input type="button" class="btn btn-outline-primary " style="float:right;margin-right:15px" value="Crear" onclick="location.href='@Url.Action("create", "itemNorma", new { id_norma=Model.Id})'" />
                 </div>
 
 

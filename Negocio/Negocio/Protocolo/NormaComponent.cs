@@ -75,7 +75,7 @@ namespace Bussiness
             ItemNormaComponent ItemNorma = new ItemNormaComponent();
             Norma result = new Norma(ItemNorma.ReadByNorma(id));
             result.codigoNorma = item.codigoNorma;
-            result.Id = item.Id;
+            result.Id = id;
             result.nombre = item.nombre;
             result.pathFoto = item.pathFoto;
             result.protocolo = item.protocolo;

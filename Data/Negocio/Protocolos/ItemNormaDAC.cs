@@ -66,7 +66,7 @@ namespace Data
     
         public List<ItemNorma> ReadByNorma(int id_norma)
         {
-            const string SQL_STATEMENT = "select * from norma_ListadoNorma as nl join ListadoNorma as lm on nl.id_ListadoNorma=lm.id_ListadoNorma where id_norma=@Id";
+            const string SQL_STATEMENT = "select * from norma_ListadoNorma as nl join ListadoNorma as lm on nl.id_ListadoNorma=lm.id_ListadoNorma where id_norma=@Id and lm.activo=1";
 
             List<ItemNorma> result = new List<ItemNorma>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -87,14 +87,14 @@ namespace Data
 
         public ItemNorma ReadBy(int id_norma,string norma)
         {
-            const string SQL_STATEMENT = "select * from norma_ListadoNorma as nl join ListadoNorma as lm on nl.id_ListadoNorma=lm.id_ListadoNorma where id_norma=@Id and nombre=@nombre";
+            const string SQL_STATEMENT = "select * from norma_ListadoNorma as nl join ListadoNorma as lm on nl.id_ListadoNorma=lm.id_ListadoNorma where id_norma=@Id and nombre=@nombre and lm.activo=1";
             ItemNorma gerencia = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Id", DbType.Int32, id_norma);
-                db.AddInParameter(cmd, "@norma", DbType.String, norma);
+                db.AddInParameter(cmd, "@nombre", DbType.String, norma);
                 using (IDataReader dr = db.ExecuteReader(cmd))
                 {
                     if (dr.Read())
@@ -108,7 +108,7 @@ namespace Data
 
         public ItemNorma ReadBy(string campo)
         {
-            const string SQL_STATEMENT = "select * from ListadoNorma  where nombre=@nombre";
+            const string SQL_STATEMENT = "select * from ListadoNorma  where nombre=@nombre and activo=1";
             ItemNorma gerencia = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -128,7 +128,7 @@ namespace Data
         }
         public ItemNorma ReadBy(int campo)
         {
-            const string SQL_STATEMENT = "select * from ListadoNorma  where id_listadoNorma=@nombre";
+            const string SQL_STATEMENT = "select * from ListadoNorma  where id_listadoNorma=@nombre and activo=1";
             ItemNorma gerencia = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -156,6 +156,22 @@ namespace Data
                 db.AddInParameter(cmd, "@Id", DbType.Int32, entity.Id);
 
                 db.AddInParameter(cmd, "@nombre", DbType.String, entity.nombre);
+
+                db.ExecuteNonQuery(cmd);
+
+
+            }
+        }
+        public void delete(int id)
+        {
+            const string SQL_STATEMENT = "update ListadoNorma set activo=0 where Id_ListadoNorma=@Id";
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.ExecuteNonQuery(cmd);
+
 
 
 

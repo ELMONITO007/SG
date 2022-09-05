@@ -31,13 +31,21 @@ namespace SG.Controllers
 
         // POST: Norma/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection,Norma norma)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                NormaComponent normaComponent = new NormaComponent();
+                if (normaComponent.Create(norma)==null)
+                {
+                    return RedirectToAction("ErrorPage");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+               
             }
             catch
             {
@@ -48,17 +56,24 @@ namespace SG.Controllers
         // GET: Norma/Edit/5
         public ActionResult Edit(int id)
         {
+            NormaComponent normaComponent = new NormaComponent();
+            return View(normaComponent.ReadBy(id));
+        }
+        public ActionResult ErrorPage()
+        {
             return View();
         }
 
         // POST: Norma/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection,Norma norma)
         {
             try
             {
                 // TODO: Add update logic here
-
+                NormaComponent normaComponent = new NormaComponent();
+                norma.Id = id;
+                normaComponent.Update(norma);
                 return RedirectToAction("Index");
             }
             catch
@@ -70,7 +85,8 @@ namespace SG.Controllers
         // GET: Norma/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            NormaComponent normaComponent = new NormaComponent();
+            return View(normaComponent.ReadBy(id));
         }
 
         // POST: Norma/Delete/5
@@ -80,7 +96,8 @@ namespace SG.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                NormaComponent normaComponent = new NormaComponent();
+                normaComponent.Delete(id);
                 return RedirectToAction("Index");
             }
             catch

@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemNormaController.cs" />
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NormaController.cs" />
@@ -7841,6 +7842,14 @@
     <Content Include="Views\TipoHerramienta\Index.cshtml" />
     <Content Include="Views\Norma\Index.cshtml" />
     <Content Include="Views\Norma\Details.cshtml" />
+    <Content Include="Views\Norma\Create.cshtml" />
+    <Content Include="Views\Norma\ErrorPage.cshtml" />
+    <Content Include="Views\Norma\Edit.cshtml" />
+    <Content Include="Views\Norma\Delete.cshtml" />
+    <Content Include="Views\ItemNorma\Create.cshtml" />
+    <Content Include="Views\ItemNorma\ErrorPage.cshtml" />
+    <Content Include="Views\ItemNorma\Edit.cshtml" />
+    <Content Include="Views\ItemNorma\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

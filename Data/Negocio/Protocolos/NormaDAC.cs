@@ -27,7 +27,7 @@ namespace Data
 
         public Norma Create(Norma entity)
         {
-            const string SQL_STATEMENT = "insert into Norma (codigoNorma,nombre,protocolo,pathFoto,Activo,Activo) values(@codigoNorma,@nombre,@protocolo,@pathFoto,1) ";
+            const string SQL_STATEMENT = "insert into Norma (codigoNorma,nombre,protocolo,pathFoto,Activo) values(@codigoNorma,@nombre,@protocolo,@pathFoto,1) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -117,7 +117,7 @@ namespace Data
         public Norma ReadBy(string campo)
         {
             const string SQL_STATEMENT = "select * from Norma where activo=1 and nombre=@Id";
-            Norma direccion = new Norma();
+            Norma direccion = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -136,7 +136,7 @@ namespace Data
 
         public void Update(Norma entity)
         {
-            const string SQL_STATEMENT = "update Norma set codigoNorma=@codigoNorma,nombre=@nombre,protocolo=@protocolo , pathFoto=@pathFoto where ID_Direccion=@Id";
+            const string SQL_STATEMENT = "update Norma set codigoNorma=@codigoNorma,nombre=@nombre,protocolo=@protocolo where ID_Norma=@Id";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -145,7 +145,7 @@ namespace Data
                 db.AddInParameter(cmd, "@codigoNorma", DbType.String, entity.codigoNorma);
                 db.AddInParameter(cmd, "@nombre", DbType.String, entity.nombre);
                 db.AddInParameter(cmd, "@protocolo", DbType.String, entity.protocolo);
-                db.AddInParameter(cmd, "@pathFoto", DbType.String, entity.pathFoto);
+
                 db.ExecuteNonQuery(cmd);
 
             }

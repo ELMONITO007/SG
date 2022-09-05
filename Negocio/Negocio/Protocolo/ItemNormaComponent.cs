@@ -60,7 +60,12 @@ namespace Bussiness
             return ItemNormaDAC.ReadByNorma(id_norma);
 
         }
+        public void delete(int id)
+        {
 
+            ItemNormaDAC ItemNormaDAC = new ItemNormaDAC();
+            ItemNormaDAC.delete(id);
+        }
         public void Update(ItemNorma entity)
 
         {
