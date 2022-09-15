@@ -1,0 +1,106 @@
+﻿@model Entities.Protocolo
+
+@{
+    ViewBag.Title = "Qr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="col-xl-5 col-xxl-3">
+            <div class="card" id="Qr">
+                <div class="card-header">
+                    <p>  <h4 class="card-title">Centro de Trabajo con Tensión </h4></p>
+
+
+                </div>
+
+
+                <div class="card-body">
+                    <div class="form-validation">
+                        <form class="needs-validation" novalidate>
+
+                            <div class="row">
+                                <div class="col-xl-3">
+                                    <div class="mb-2 row">
+                                        <div class="col-lg-6">
+                                            <img style="margin-left:30px" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.qr))" width="75" height="75" />
+                                            <img src="~/img/Nousar.png" width="200" height="130" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="mb-3 row">
+                                        <div class="col-lg-10" style="margin-left:50px">
+
+                                            <h5> @Model.laboratorio.nombre </h5>
+                                            <h5>Fecha Ensayo: @Model.fechaEnsayo </h5>
+                                            <h5>Vencimiento: @Model.herramienta.proximaActualizacion</h5>
+                                            <h5> Ensayo: @Model.codigo  </h5>
+                                            <h5> Codigo: @Model.herramienta.codigoViejo </h5>
+                                            <h5>@Model.herramienta.sector.estacion   @Model.herramienta.sector.empresa  </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <button type="button" onclick="javascript:imprim1(print);">Imprimir</button>
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+    function imprim1(Qr) {
+        var printContents = document.getElementById('Qr').innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.document.close(); // necessary for IE >= 10
+        w.focus(); // necessary for IE >= 10
+        w.print();
+        w.close();
+        return true;
+    }
+    function imprim1(print) {
+        var printContents = document.getElementById('print').innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.document.close(); // necessary for IE >= 10
+        w.focus(); // necessary for IE >= 10
+        w.print();
+        w.close();
+        return true;
+    }
+</script>
+
+
+
+<div id="print" class="card" style="height:230px;width:230px">
+
+
+    <div class="col-xl-5 " style="margin-left:5px;margin-top:5px">
+
+
+        <pre style="font-size:10px ;text-align:center"><b style="font-family:'Swis721 BlkEx BT'">  @Model.laboratorio.nombre</b> </pre>
+
+
+
+        <img src="~/img/Nousar.png" width="200" height="55" />
+        <img style="margin-left:3px" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.qr))" width="50" height="50" />
+        <pre style="font-size: 13px; font-family: 'Swis721 BlkEx BT' "><b>Fecha Ensayo: @Model.fechaEnsayo</b></pre>
+        <pre style="font-size: 13px; font-family: 'Swis721 BlkEx BT' "><b>Vencimiento: @Model.herramienta.proximaActualizacion</b></pre>
+        <pre style="font-size: 13px; font-family: 'Swis721 BlkEx BT'"><b>Ensayo: @Model.codigo &emsp; Codigo: @Model.herramienta.codigoViejo</b></pre>
+        <pre style="font-size: 13px; font-family: 'Swis721 BlkEx BT'"><b>@Model.herramienta.sector.estacion   @Model.herramienta.sector.empresa</b></pre>
+        <pre style="font-size: 16px; font-family: 'Swis721 BlkEx BT'"><b>NO USAR. Herramienta no paso la inspección</b></pre>
+
+    </div>
+
+</div>

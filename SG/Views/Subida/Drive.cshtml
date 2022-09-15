@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Entities.CargaInicialHerramienta>
+
+
+@{Layout = " ~/Views/Shared/_Layout.cshtml";}
+
+<link href="~/Content/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <h4 class="card-title">Listado de CargaInicialHerramienta</h4>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example3" class="display" style="min-width: 845px">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.existe)
+                                    </th>
+                                    <th>
+                                        Codigo
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.existe)
+                                        </td>
+
+                                        @*@{string p = "/ CargaInicialHerramienta/details/" & item.Id;
+                                            string a = "/ CargaInicialHerramienta/edit/" + item.Id;
+                                             string d = "/ CargaInicialHerramienta/delete/" + item.Id; }*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.herramienta.codigoViejo)
+
+                                            @*<a href="@p" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-info"></i></a>
+                                                <a href="@a" class="btn btn-blue shadow btn-xs sharp"><i class="fa fa-edit"></i></a>
+                                                 <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-cross"></i></a>*@
+
+                                        </td>
+
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <input type="button" class="btn btn-outline-primary " style="float:right;margin-right:15px" value="Crear" onclick="location.href='@Url.Action("create", "CargaInicialHerramienta")'" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+
+
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Chart piety plugin files -->
+
+<script src="~/Content/vendor/peity/jquery.peity.min.js"></script>
+<!-- Dashboard 1 -->
+
+<script src="~/Content/js/dashboard/dashboard-1.js"></script>
+
+<script src="~/Content/vendor/owl-carousel/owl.carousel.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>
+
+<script src="~/Content/js/dlabnav-init.js"></script>
+<!-- Required vendors -->
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+<!-- Datatable -->
+<script src="~/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/js/plugins-init/datatables.init.js"></script>
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>
+

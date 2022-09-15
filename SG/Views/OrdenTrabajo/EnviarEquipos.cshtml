@@ -1,0 +1,86 @@
+﻿@model Entities.OrdenTrabajo
+
+@{
+    ViewBag.Title = "EnviarEquipos";
+    Layout = "~/Views/Shared/_LayoutSupervisor.cshtml";
+}
+
+<h2>EnviarEquipos</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="content-body">
+        <div class="container-fluid">
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Enviar equipos al laboratorio. Ensayo N° @Model.Id</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="needs-validation" novalidate>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom01">
+                                                    Guia
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+
+                                                    @Html.EditorFor(model => model.GuiaRecepcion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese guia o quien llevara las herramientas", @id = "validationCustom01" } })
+
+
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom02">
+                                                    Transporte <span class="text-danger">*</span>
+
+                                                </label>
+
+
+                                                <div class="col-lg-6">
+                                                    @Html.EditorFor(model => model.TransporteRecepcion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese guia o quien llevara las herramientas", @id = "validationCustom01" } })
+
+                                                </div>
+
+                                            </div>
+                                            <br />
+                                            @Html.EditorFor(model => model.Usuario.UserName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "validationCustom01" } })
+                                            @Html.HiddenFor(model => model.Usuario.Id)
+                                            @Html.HiddenFor(model => model.Estado)
+
+                                            <br />
+                                        </div>
+                                        <br />
+                                        <br />
+                                        @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Escriba cuales y cuantas herramientas se van a enviar" } })
+                                        @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                                        <br />
+                                        <div class="mb-6 row">
+                                            <div class="col-lg-8 ms-auto">
+                                                <br />
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+

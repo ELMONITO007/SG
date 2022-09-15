@@ -27,13 +27,13 @@ namespace Negocio
             //labo
             LaboratorioComponent laboratorioComponent = new LaboratorioComponent();
             Laboratorio laboratorio = new Laboratorio();
-            laboratorio = laboratorioComponent.ReadbyUsuario(entity.asignado.Id)[0];
+            laboratorio = laboratorioComponent.ReadbyUsuario(1)[0];
             entity.Laboratorio = laboratorio;
             OrdenTrabajo ordenTrabajo = new OrdenTrabajo();
 
             UsuariosComponent usuarios = new UsuariosComponent();
            
-            entity.asignado = entity.asignado;
+            entity.asignado.Id =1 ;
             ordenTrabajo = ordenTrabajoDAC.Create(entity);
 
             OrdenTrabajo ordenCreada = new OrdenTrabajo();
@@ -134,74 +134,72 @@ namespace Negocio
 
         }
 
-        //public List<OrdenTrabajo> ReadbySector(int id)
-        //{
-        //    List<OrdenTrabajo> result = new List<OrdenTrabajo>();
-        //    OrdenTrabajoDAC ordenTrabajoDAC = new OrdenTrabajoDAC();
-        //    List<OrdenTrabajo> ListaOE = new List<OrdenTrabajo>();
+        public List<OrdenTrabajo> ReadbySector(int id)
+        {
+            List<OrdenTrabajo> result = new List<OrdenTrabajo>();
+            OrdenTrabajoDAC ordenTrabajoDAC = new OrdenTrabajoDAC();
+            List<OrdenTrabajo> ListaOE = new List<OrdenTrabajo>();
 
-        //    SectorComponent sectorComponent = new SectorComponent();
-        //    foreach (Sector sector in sectorComponent.ReadBySector(id))
-        //    {
-        //        foreach (var item in ordenTrabajoDAC.ReadbySector(sector.Id))
-        //        {
-        //            Laboratorio laboratorio = new Laboratorio();
-        //            LaboratorioComponent laboratorioComponent = new LaboratorioComponent();
-        //            laboratorio = laboratorioComponent.ReadBy(item.Laboratorio.Id);
-        //            Usuario usuarios = new Usuario();
-        //            UsuariosComponent usuariosComponent = new UsuariosComponent();
-        //            usuarios = usuariosComponent.ReadBy(item.Usuario.Id);
+         
+                foreach (var item in ordenTrabajoDAC.ReadbySector(0))
+                {
+                    Laboratorio laboratorio = new Laboratorio();
+                    LaboratorioComponent laboratorioComponent = new LaboratorioComponent();
+                    laboratorio = laboratorioComponent.ReadBy(item.Laboratorio.Id);
+                    Usuarios usuarios = new Usuarios();
+                    UsuariosComponent usuariosComponent = new UsuariosComponent();
+                    usuarios = usuariosComponent.ReadBy(item.Usuario.Id);
 
-        //            OrdenTrabajo ordenTrabajo = new OrdenTrabajo(usuarios, laboratorio);
-        //            ordenTrabajo.cantidadEquipos = item.cantidadEquipos;
-        //            OrdenTrabajoEstado estado = new OrdenTrabajoEstado();
-        //            OrdenTrabajoEstadoComponent ordenTrabajoEstadoComponent = new OrdenTrabajoEstadoComponent();
-        //            estado = ordenTrabajoEstadoComponent.EstadoActual(item.Id);
-        //            ordenTrabajo.Estado = estado;
-        //            ordenTrabajo.Fecha = item.Fecha;
-        //            ordenTrabajo.Id = item.Id;
-        //            TurnoComponent turnoComponent = new TurnoComponent();
-        //            ordenTrabajo.Fecha = turnoComponent.FormatearAFecha(item.Fecha);
-        //            Turno turno = new Turno();
-        //            turno = turnoComponent.ReadByOrden(item.Id);
-        //            if (turno == null)
-        //            {
-        //                turno = new Turno();
-        //                turno.FechaFinDeEnsayo = "A Asignar";
-        //                turno.FechaRecepcionMateriales = "A Asignar";
-        //            }
-        //            else
-        //            {
-        //                ordenTrabajo.Turno = turno;
+                    OrdenTrabajo ordenTrabajo = new OrdenTrabajo(usuarios, laboratorio);
+                    ordenTrabajo.cantidadEquipos = item.cantidadEquipos;
+                    OrdenTrabajoEstado estado = new OrdenTrabajoEstado();
+                    OrdenTrabajoEstadoComponent ordenTrabajoEstadoComponent = new OrdenTrabajoEstadoComponent();
+                    estado = ordenTrabajoEstadoComponent.EstadoActual(item.Id);
+                    ordenTrabajo.Estado = estado;
+                    ordenTrabajo.Fecha = item.Fecha;
+                    ordenTrabajo.Id = item.Id;
+                    TurnoComponent turnoComponent = new TurnoComponent();
+                    ordenTrabajo.Fecha = turnoComponent.FormatearAFecha(item.Fecha);
+                    Turno turno = new Turno();
+                    turno = turnoComponent.ReadByOrden(item.Id);
+                    if (turno == null)
+                    {
+                        turno = new Turno();
+                        turno.FechaFinDeEnsayo = "A Asignar";
+                        turno.FechaRecepcionMateriales = "A Asignar";
+                    }
+                    else
+                    {
+                        ordenTrabajo.Turno = turno;
 
-        //            }
-        //            if (item.guia == null)
-        //            {
-        //                ordenTrabajo.transporte = "A Asignar";
-        //                ordenTrabajo.guia = "A Asignar";
-        //            }
-        //            else
-        //            {
-        //                ordenTrabajo.transporte = item.transporte;
-        //                ordenTrabajo.guia = item.guia;
+                    }
+                    if (item.guia == null)
+                    {
+                        ordenTrabajo.transporte = "A Asignar";
+                        ordenTrabajo.guia = "A Asignar";
+                    }
+                    else
+                    {
+                        ordenTrabajo.transporte = item.transporte;
+                        ordenTrabajo.guia = item.guia;
 
-        //            }
-        //            result.Add(ordenTrabajo);
-        //        }
+                    }
+                    result.Add(ordenTrabajo);
+                }
 
 
-        //    }
+           
 
 
 
 
 
 
-        //    return result;
+            return result;
 
-        //}
+        }
 
-  
+
         public OrdenTrabajo Readby(int id)
         {
             List<OrdenTrabajo> result = new List<OrdenTrabajo>();

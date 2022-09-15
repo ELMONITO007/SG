@@ -1,0 +1,173 @@
+﻿@model Entities.OrdenTrabajo
+@using Business
+
+@{Layout = " ~/Views/Shared/_Layout.cshtml";}
+
+<link href="~/Content/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+
+@using (Html.BeginForm("Index", "precarga", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h4 class="card-title">Listado de carga inicial de herramientas de la Orden de Ensayo N° @Model.Id</h4>
+                    </div>
+                    <div class="alert alert-info solid alert-dismissible fade show">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        @ViewBag.Error
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example3" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Codigo
+                                        </th>
+                                        <th>
+                                            Existe
+                                        </th>
+                                        <th>
+                                            Herramienta N°
+                                        </th>
+                                        <th>Acciones</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.cargaInicialHerramientas)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.codigo)
+                                            </td>
+                                            <td>
+                                                @{string existe = ""; string herramienta = "";}
+                                                @if (item.existe)
+                                                {
+                                                    existe = "SI";
+                                                }
+
+                                                @if (!item.existe)
+                                                {
+                                                    existe = "NO";
+                                                }
+                                                @existe
+                                            </td>
+                                            <td>
+                                                @if (item.herramienta.Id == 0 && item.codigo == "Nuevo")
+                                                {
+                                                    herramienta = "Nuevo";
+                                                }
+                                                @if (item.herramienta.Id == 0 && item.codigo != "Nuevo")
+                                                {
+                                                    herramienta = "Sin registro";
+                                                }
+                                                @if (item.herramienta.Id != 0)
+                                                {
+                                                    herramienta = item.herramienta.Id.ToString();
+                                                }
+                                                @herramienta
+                                            </td>
+
+                                            <td>
+                                                @{string d = "/CargaInicialHerramienta/delete/" + item.codigo;
+                                                  
+
+                                                }
+
+                                                <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                               
+
+                                            </td>
+
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class=" row">
+                        <div class="col-lg-8 ms-auto">
+
+
+                            @{string pagina = "/precarga/download/" + Model.Id;
+                                string accept = "SubidaOE" + Model.Id + ".xls";}
+
+                            <label class="col-form-label text-right">Seleccione la precarga (Nombre @accept)</label>
+
+                            <div class="input-group mb-3">
+                                <button class="btn btn-primary btn-sm" type="submit">Subir</button>
+                                <div class="form-file">
+                                    <input type="file" name="file" class="form-file-input form-control" accept=".xls" /> <br />
+                                </div>
+                            </div>
+
+                            <a href="@pagina" class="btn btn-warning" style="margin-left:75px"><i class="fas fa-tools me-2 "></i>Descargar Excel</a>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+
+
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Chart piety plugin files -->
+
+<script src="~/Content/vendor/peity/jquery.peity.min.js"></script>
+<!-- Dashboard 1 -->
+
+<script src="~/Content/js/dashboard/dashboard-1.js"></script>
+
+<script src="~/Content/vendor/owl-carousel/owl.carousel.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>
+
+<script src="~/Content/js/dlabnav-init.js"></script>
+<!-- Required vendors -->
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+<!-- Datatable -->
+<script src="~/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/js/plugins-init/datatables.init.js"></script>
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>
+
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<script src="~/Content/js/custom.min.js"></script>
+<script src="~/Content/js/dlabnav-init.js"></script>

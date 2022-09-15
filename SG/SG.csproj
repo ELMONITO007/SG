@@ -135,7 +135,11 @@
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NormaController.cs" />
+    <Compile Include="Controllers\OT\OrdenTrabajoController.cs" />
+    <Compile Include="Controllers\OT\PreCargaController.cs" />
+    <Compile Include="Controllers\OT\TurnoController.cs" />
     <Compile Include="Controllers\PertigaUniversalController.cs" />
+    <Compile Include="Controllers\ProtocoloController.cs" />
     <Compile Include="Controllers\TipoHerramientaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filter\AuthorizerUser.cs" />
@@ -7857,6 +7861,25 @@
     <Content Include="Views\PertigaUniversal\Edit.cshtml" />
     <Content Include="Views\PertigaUniversal\ErrorPage.cshtml" />
     <Content Include="Views\PertigaUniversal\Index.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Create.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Download.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Ensayar.cshtml" />
+    <Content Include="Views\OrdenTrabajo\EnviarEquipos.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Historico.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Index.cshtml" />
+    <Content Include="Views\OrdenTrabajo\OrdenSupervisor.cshtml" />
+    <Content Include="Views\OrdenTrabajo\Recibido.cshtml" />
+    <Content Include="Views\PreCarga\Delete.cshtml" />
+    <Content Include="Views\PreCarga\Download.cshtml" />
+    <Content Include="Views\PreCarga\Index.cshtml" />
+    <Content Include="Views\Protocolo\Index.cshtml" />
+    <Content Include="Views\Protocolo\Qr.cshtml" />
+    <Content Include="Views\Protocolo\QrError.cshtml" />
+    <Content Include="Views\Subida\Drive.cshtml" />
+    <Content Include="Views\Subida\PrimeraCarga.cshtml" />
+    <Content Include="Views\Shared\_LayoutSupervisor.cshtml" />
+    <Content Include="Views\Turno\Create.cshtml" />
+    <Content Include="Views\Turno\EditarTurnoEnsayo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

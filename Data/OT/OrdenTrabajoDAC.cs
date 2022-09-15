@@ -36,7 +36,7 @@ namespace Data
 
         public OrdenTrabajo Create(OrdenTrabajo entity)
         {
-            const string SQL_STATEMENT = "insert into OrdenTrabajo(asignado,Id,ID_Labotatorio,Fecha,cantidadEquipos,activo,GuiaRecepcion,TransporteRecepcion,guia,transporte,observaciones,Id_sector)values (@asignado,@Id,@ID_Labotatorio,@Fecha,@cantidadEquipos,1,@GuiaRecepcion,@TransporteRecepcion,@guia,@transporte,@observaciones,@Id_sector) ";
+            const string SQL_STATEMENT = "insert into OrdenTrabajo(asignado,Id,ID_Labotatorio,Fecha,cantidadEquipos,activo,GuiaRecepcion,TransporteRecepcion,guia,transporte,observaciones)values (@asignado,@Id,@ID_Labotatorio,@Fecha,@cantidadEquipos,1,@GuiaRecepcion,@TransporteRecepcion,@guia,@transporte,@observaciones) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             { 
@@ -159,7 +159,7 @@ namespace Data
         }
         public List<OrdenTrabajo> ReadbySector(int id)
         {
-            const string SQL_STATEMENT = "select * from OrdenTrabajo where id_sector= @id and Activo=1 ";
+            const string SQL_STATEMENT = "select * from OrdenTrabajo where  Activo=1 ";
 
             List<OrdenTrabajo> result = new List<OrdenTrabajo>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

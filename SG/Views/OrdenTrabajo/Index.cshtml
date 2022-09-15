@@ -1,0 +1,226 @@
+﻿@model IEnumerable<Entities.OrdenTrabajo>
+
+@{
+    ViewBag.Title = "OrdenSupervisor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Datatable -->
+<link href="~/Content/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<!-- Custom Stylesheet -->
+<div class="content-body">
+    <div class="container-fluid">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Herramientas</h4>
+                </div>
+                <div class="alert alert-info solid alert-dismissible fade show">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    @ViewBag.Error
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example3" class="display" style="min-width: 845px">
+                            <thead>
+                                <tr>
+                                    <th>OT</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Estado</th>
+                                    <th> Fecha Envio</th>
+                                    <th>Ensayo</th>
+                                    <th>Fecha Retiro</th>
+                                    <th>Transporte</th>
+                                    <th>Guia</th>
+
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id </td>
+                                        <td>@item.Fecha</td>
+                                        <td>@item.Estado.EstadoOrdenEnsayo.estadoFinal</td>
+
+
+                                        @if (item.Turno == null)
+
+                                        {
+                                            <td>A designar</td>
+                                            <td>A designar</td>
+                                            <td>A designar</td>
+                                            <td>A designar</td>
+                                            <td>A designar</td>
+                                            <td>
+                                                @Html.ActionLink("Asignar Turno", "Create", "Turno", new { id = item.Id }, null) |
+                                                @Html.ActionLink("Modificar Laboratorio", "ModificarLaboratorio", "ordentrabajo", new { id = item.Id }, null)
+                                            </td>
+                                        }
+                                        @if (item.Turno != null)
+
+                                        {
+                                            <td>@item.Turno.FechaRecepcionMateriales</td>
+                                            <td>@item.Turno.FechaComienzoDeEnsayo</td>
+                                            <td>@item.Turno.FechaFinDeEnsayo</td>
+
+                                            if (item.guia != null)
+                                            {
+                                                <td>@item.guia</td>
+                                                <td>@item.transporte</td>
+                                            }
+                                            if (item.guia == null)
+                                            {
+                                                <td>A designar</td>
+                                                <td>A designar</td>
+                                            }
+
+
+                                            string c = "/turno/EditarTurnoEnsayo/" + item.Id;
+                                            string d = "/ordentrabajo/Historico/" + item.Id;
+                                            string e = "/ordentrabajo/CreateMasivo/" + item.Id;
+                                            if (item.Estado.EstadoOrdenEnsayo.estadoFinal == "Herramientas enviadas")
+
+
+                                            {
+                                                <td>
+                                                    <a href="@c" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-edit"></i></a>
+                                                    <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>
+
+                                                </td>
+
+
+                                            }
+                                            if (item.Estado.EstadoOrdenEnsayo.estadoFinal == "Turno Asignado. Enviar Herramientas")
+
+
+                                            {
+
+                                                <td>
+                                                    <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>
+                                                </td>
+
+
+                                            }
+                                            if (item.Estado.EstadoOrdenEnsayo.estadoFinal == "Turno para ensayo asignado")
+                                            {
+
+                                                <td>
+                                                    @Html.ActionLink("Ensayar", "CreateMasivo", "Protocolo", new { id = item.Id }, null)
+                                                    <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>
+
+                                                    @Html.ActionLink("Agregar Guia", "CreateGuia", "Turno", new { id = item.Id }, null)
+
+
+                                                    @if (item.guia != null)
+                                                    {
+                                                        @Html.ActionLink("Modificar Guia", "UpdateGuia", "Turno", new { id = item.Id }, null)
+                                                    }
+
+
+                                                </td>
+                                            }
+
+                                            if (item.Estado.EstadoOrdenEnsayo.estadoFinal == "Ensayar")
+                                            {
+
+                                                <td>
+                                                    @Html.ActionLink("Precarga", "index", "Precarga", new { id = item.Id }, null)|
+                                                    @Html.ActionLink("Ensayar", "Ensayar", "ordenTrabajo", new { id = item.Id }, null)|
+                                                    <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>|
+
+                                                    @Html.ActionLink("Agregar Guia", "CreateGuia", "Turno", new { id = item.Id }, null)
+
+
+                                                    @if (item.guia != null)
+                                                    {
+                                                        @Html.ActionLink("Modificar Guia", "UpdateGuia", "Turno", new { id = item.Id }, null)
+                                                    }
+
+
+                                                </td>
+                                            }
+                                            if (item.Estado.EstadoOrdenEnsayo.estadoFinal == "Ensayado")
+                                            {
+
+                                                <td>
+
+
+                                                    <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>|
+
+                                                    @Html.ActionLink("Agregar Guia", "CreateGuia", "Turno", new { id = item.Id }, null)
+
+
+                                                    @if (item.guia != null)
+                                                    {
+                                                        @Html.ActionLink("Modificar Guia", "UpdateGuia", "Turno", new { id = item.Id }, null)
+                                                    }
+
+
+                                                </td>
+                                            }
+
+
+                                        }
+
+
+
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- Required vendors -->
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+
+
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Chart piety plugin files -->
+
+<script src="~/Content/vendor/peity/jquery.peity.min.js"></script>
+<!-- Dashboard 1 -->
+
+<script src="~/Content/js/dashboard/dashboard-1.js"></script>
+
+<script src="~/Content/vendor/owl-carousel/owl.carousel.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>
+
+<script src="~/Content/js/dlabnav-init.js"></script>
+<!-- Required vendors -->
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+<!-- Datatable -->
+<script src="~/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/js/plugins-init/datatables.init.js"></script>
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>
+<script src="~/Content/js/dlabnav-init.js"></script>
