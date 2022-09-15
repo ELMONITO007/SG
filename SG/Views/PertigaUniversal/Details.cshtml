@@ -1,0 +1,200 @@
+﻿@model Entities.PertigaUniversal
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<div class="content-body">
+    <div class="card" style="background-color:dodgerblue">
+
+        <div class="card-header">
+            <h4 class="fs-30 font-w600  me-auto" style="color:white">Detalles de la herramienta @Model.codigoHerramienta.codigo @Model.codigoHerramienta.numero</h4>
+
+
+        </div>
+
+
+        <!-- row -->
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-3 col-xxl-4">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card"  style="background-color:aliceblue">
+                                <div class="card-header border-0 pb-0">
+                                    <h4 class="fs-20 mb-0">Datos</h4>
+                                </div>
+                                <div class="card-body pt-4">
+
+                                    @if (@Model.marca != null)
+                                    {
+                                        <div class="mb-3 d-flex">
+                                            <h5 class="mb-1 fs-14 custom-label">Marca:</h5>
+                                            <span>@Model.marca</span>
+                                        </div>
+                                    }
+
+                                    @if (@Model.modelo != null)
+                                    {
+                                        <div class="mb-3 d-flex">
+                                            <h5 class="mb-1 fs-14 custom-label">Modelo:</h5>
+                                            <span>@Model.modelo</span>
+                                        </div>
+                                    }
+                                    @if (@Model.numeroSerie != null)
+                                    {
+                                        <div class="mb-3 d-flex">
+                                            <h5 class="mb-1 fs-14 custom-label">Numero de Serie:</h5>
+                                            <span>@Model.numeroSerie</span>
+                                        </div>
+                                    }
+                                    <div class="mb-3 d-flex">
+                                        <h5 class="mb-1 fs-14 custom-label">Vencimiento:</h5>
+                                        <span>@Model.proximaActualizacion </span>
+                                    </div>
+                                    <div class="mb-3 d-flex">
+                                        <h5 class="mb-1 fs-14 custom-label">Mantenimiento:</h5>
+                                        <span>@Model.tiempoMantenimiento Meses</span>
+                                    </div>
+                                    <div class="mb-3 d-flex">
+                                        <h5 class="mb-1 fs-14 custom-label">Asignado:</h5>
+                                        <span>@Model.usuarios.UserName</span>
+                                    </div>
+                                    
+
+
+                                    @{string edit = "/Pertigauniversal/" + Model.Id;}
+                                    <a href="@edit" class="btn btn-info btn-sm mb-3" style="margin-left:75px"><i class="fas fa-tools me-2 "></i>Editar</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-xxl-8">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-header d-block">
+                                    <h4 class="fs-20 d-block">Datos Adicionales</a></h4>
+
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="ms-4">
+                                        @foreach (var subItem in Model.herramientaItem)
+                                        {
+                                            <div class="col-md-auto">
+                                                <h5><b>@subItem.itemHerramienta.nombre:</b> @subItem.valor </h5>
+
+
+                                            </div>
+                                        }
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Listado de Protocolos realizados</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example3" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Laboratorio</th>
+                                        <th>Fecha ensayo</th>
+                                        <th>Laboratista</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.listaProtocolo)
+                                    {
+
+
+                                        <tr>
+
+                                            <td>@item.codigo</td>
+                                            <td>@item.laboratorio.nombre</td>
+                                            <td>@item.fechaEnsayo</td>
+
+                                            <td>@item.usuario.Nombre @item.usuario.Apellido  </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    @{string p = "/Protocolo/qr/" + item.Id;
+                                                        string v = "/Protocolo/index/" + item.Id;
+                                                    }
+                                                    <a href="@p" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-qrcode"></i></a>
+                                                    <a href="@v" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <input type="button" class="btn btn-outline-primary " style="float:right;margin-right:15px" value="Crear" onclick="location.href='@Url.Action("create", "PertigaUniversal")'" />
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+
+
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Chart piety plugin files -->
+
+<script src="~/Content/vendor/peity/jquery.peity.min.js"></script>
+<!-- Dashboard 1 -->
+
+<script src="~/Content/js/dashboard/dashboard-1.js"></script>
+
+<script src="~/Content/vendor/owl-carousel/owl.carousel.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>
+
+<script src="~/Content/js/dlabnav-init.js"></script>
+<!-- Required vendors -->
+<script src="~/Content/vendor/global/global.min.js"></script>
+<script src="~/Content/vendor/chart.js/Chart.bundle.min.js"></script>
+<!-- Apex Chart -->
+<script src="~/Content/vendor/apexchart/apexchart.js"></script>
+
+<!-- Datatable -->
+<script src="~/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/js/plugins-init/datatables.init.js"></script>
+
+<script src="~/Content/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+<script src="~/Content/js/custom.min.js"></script>

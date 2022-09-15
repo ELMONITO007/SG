@@ -135,6 +135,7 @@
     <Compile Include="Controllers\LaboratorioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NormaController.cs" />
+    <Compile Include="Controllers\PertigaUniversalController.cs" />
     <Compile Include="Controllers\TipoHerramientaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filter\AuthorizerUser.cs" />
@@ -7850,6 +7851,12 @@
     <Content Include="Views\ItemNorma\ErrorPage.cshtml" />
     <Content Include="Views\ItemNorma\Edit.cshtml" />
     <Content Include="Views\ItemNorma\Delete.cshtml" />
+    <Content Include="Views\PertigaUniversal\Create.cshtml" />
+    <Content Include="Views\PertigaUniversal\Delete.cshtml" />
+    <Content Include="Views\PertigaUniversal\Details.cshtml" />
+    <Content Include="Views\PertigaUniversal\Edit.cshtml" />
+    <Content Include="Views\PertigaUniversal\ErrorPage.cshtml" />
+    <Content Include="Views\PertigaUniversal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

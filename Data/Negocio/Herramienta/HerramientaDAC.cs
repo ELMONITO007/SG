@@ -85,7 +85,7 @@ namespace Data
         }
         public Herramienta Create(Herramienta entity)
         {
-            const string SQL_STATEMENT = "insert into Herramienta (id_TipoHerrramienta,codigo,modelo,Estado,numeroSerie,tiempoMantenimiento,vencida,numero,proximaActualizacion,marca,codigoViejo) values(@id_tipoHerramienta,@codigo,@modelo,@Estado,@numeroSerie,@tiempoMantenimiento,@vencida,@numero,@proximaActualizacion,@marca,@codigoViejo) ";
+            const string SQL_STATEMENT = "insert into Herramienta (id_TipoHerrramienta,codigo,modelo,Estado,numeroSerie,tiempoMantenimiento,vencida,numero,proximaActualizacion,marca,codigoViejo,id_usuario) values(@id_tipoHerramienta,@codigo,@modelo,@Estado,@numeroSerie,@tiempoMantenimiento,@vencida,@numero,@proximaActualizacion,@marca,@codigoViejo,@id_usuario) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -100,6 +100,7 @@ namespace Data
                 db.AddInParameter(cmd, "@tiempoMantenimiento", DbType.Int32, entity.tiempoMantenimiento);
                 db.AddInParameter(cmd, "@vencida", DbType.Boolean, entity.vencida);
                 db.AddInParameter(cmd, "@codigoViejo", DbType.String, entity.codigoViejo);
+                db.AddInParameter(cmd, "@id_usuario", DbType.Int32, entity.usuarios.Id);
 
                 db.AddInParameter(cmd, "@proximaActualizacion", DbType.String, entity.proximaActualizacion);
 
