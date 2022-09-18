@@ -371,8 +371,11 @@ namespace TCT.Controllers.Negocio.OT
 
                 if (file != null)
                 {
-                    file.SaveAs(Server.MapPath("~/Ensayos/") + id + @"\ensayoN" + id + ".xls");
                     string path = Server.MapPath("~/Ensayos/") + id + @"\ensayoN" + id + ".xls";
+                    Archivo.VerificarSiExsiteArchivo(path);
+                    file.SaveAs(Server.MapPath("~/Ensayos/") + id + @"\ensayoN" + id + ".xls");
+
+                  
                     OrdenTrabajoComponent ordenTrabajo = new OrdenTrabajoComponent();
                     ordenTrabajo.Ensayar(id, usuarios.Id,path);
 

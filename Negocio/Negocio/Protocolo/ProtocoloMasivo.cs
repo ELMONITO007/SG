@@ -1,7 +1,9 @@
 ﻿
 using Business;
+using Business.Negocio.Protocolo;
 using Bussiness;
 using Entities;
+using Negocio.Herramienta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +38,9 @@ namespace Negocio
                 {
                     
                     List<string> subList = new List<string>();
+                    List<string> ListaInstrumentos = new List<string>();
                     subList = Texto.SepararTextoPorCaracter(',', subItem);
-                 Entities.Herramienta herramienta = new Entities.Herramienta();
+                   Entities.Herramienta herramienta = new Entities.Herramienta();
                     HerramientaComponent herramientaComponent = new HerramientaComponent();
                     herramienta = herramientaComponent.ReadBy(int.Parse(subList[0]));
                     if (herramienta != null)
@@ -48,12 +51,17 @@ namespace Negocio
                         protocolo.temperatura = int.Parse(subList[8]);
                         protocolo.hmedadad = int.Parse(subList[9]);
                         protocolo.conclusion = subList[10];
-
+                        ListaInstrumentos.Add(subList[11]);
+                        ListaInstrumentos.Add(subList[12]);
+                        ListaInstrumentos.Add(subList[13]);
+                       
                         protocolo.norma = GenerarDatosNorma(herramienta.tipoHerramienta.norma.Id, subList);
                         protocolo.codigo = protocolo.laboratorio.codigo + "-OE" + id_Orden + "-" + a;
                         protocolo.usuario.Id = id_usuario;
                         ProtocoloComponent protocoloComponent = new ProtocoloComponent();
-                        protocoloComponent.CreateMAsivo(protocolo, id_Orden,ObtenerItemNorma(subList));
+                        Protocolo result = new Protocolo();
+                        result=protocoloComponent.CreateMAsivo(protocolo, id_Orden,ObtenerItemNorma(subList));
+                        RegistrarInstrumento(ListaInstrumentos, result.Id);
                         protocolos.Add(protocolo);
                         a++;
                     }
@@ -71,6 +79,34 @@ namespace Negocio
 
         }
 
+        public void RegistrarInstrumento(List<string> lista, int protocolo)
+
+
+        {
+            foreach (var item in lista)
+            {
+                if (item != "")
+                {
+                    Instrumento instrumento = new Instrumento();
+                  
+                    InstrumentoComponent instrumentoComponent = new InstrumentoComponent();
+                    instrumento = instrumentoComponent.ReadbyCodigo(item);
+                    ProtocoloDetalle protocoloDetalle = new ProtocoloDetalle();
+                    protocoloDetalle.id_protocolo = protocolo;
+                    protocoloDetalle.certificado = instrumento.certificado;
+                    protocoloDetalle.codigo = instrumento.codigo;
+                    protocoloDetalle.marca = instrumento.marca;
+                     protocoloDetalle.numeroSerie=instrumento.numeroSerie;
+                    protocoloDetalle.tipo=instrumento.tipo;
+                    protocoloDetalle.vencimiento = instrumento.vencimiento;
+                    ProtocoloDetalleComponent protocoloDetalleComponent = new ProtocoloDetalleComponent();
+                    protocoloDetalleComponent.Create(protocoloDetalle);
+                }
+            }
+        
+        
+        }
+
 
         public List<string> ObtenerItemNorma(List<string> lista)
 
@@ -78,13 +114,14 @@ namespace Negocio
 
         List<string> result = new List<string>();
 
-            for (int i = 11; i < lista.Count()-1; i++)
+            for (int i = 14; i < lista.Count()-1; i++)
             {
                 result.Add(lista[i]);
             }
 
             return result;
         }
+
 
         public Norma GenerarDatosNorma(int id_norma, List<string> itenNorma)
 
@@ -93,7 +130,7 @@ namespace Negocio
             NormaComponent normaComponent = new NormaComponent();
             norma = normaComponent.ReadBy(id_norma);
             List<ItemNorma> itemNormas = new List<ItemNorma>();
-            int a = 11;
+            int a = 14;
 
             foreach (var item in norma.listadoNormas)
             {

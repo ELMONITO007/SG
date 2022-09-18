@@ -60,6 +60,7 @@
     <Compile Include="Negocio\Protocolos\ItemNormaDAC.cs" />
     <Compile Include="Negocio\Protocolos\NormaDAC.cs" />
     <Compile Include="Negocio\Protocolos\ProtocoloDAC.cs" />
+    <Compile Include="Negocio\Protocolos\ProtocoloDetalleDAC.cs" />
     <Compile Include="Negocio\Protocolos\ProtocoloItemDAC.cs" />
     <Compile Include="OT\CargaInicialHerramientaDAC.cs" />
     <Compile Include="OT\EstadoOrdenEnsayoDAC.cs" />

@@ -35,29 +35,29 @@ namespace Bussiness
         }
         public Protocolo CreateMAsivo(Protocolo entity,int orden,List<string>itemNorma)
         {
-           
-                ProtocoloDAC protocoloDAC = new ProtocoloDAC();
+
+            ProtocoloDAC protocoloDAC = new ProtocoloDAC();
             Protocolo protocolo = new Protocolo();
-            protocolo= protocoloDAC.Create(entity);
+            protocolo = protocoloDAC.Create(entity);
             protocoloDAC.AgregarProtocolo(protocolo.Id, orden);
             ProtocoloItemComponent protocoloItem = new ProtocoloItemComponent();
             protocoloItem.CreateMasivoProtocoloItem(itemNorma, entity.norma.Id, protocolo.Id);
 
-            if (entity.conclusion.ToLower()=="incorrecto")
+            if (entity.conclusion.ToLower() == "incorrecto")
             {
                 HerramientaComponent herramientaComponent = new HerramientaComponent();
-                herramientaComponent.UpdateEstado(entity.herramienta.Id,"Baja");
+                herramientaComponent.UpdateEstado(entity.herramienta.Id, "Baja");
 
             }
             else
             {
-               
+
                 HerramientaComponent herramientaComponent = new HerramientaComponent();
                 herramientaComponent.UpdateVencida(entity.herramienta.Id, true, entity.herramienta.tiempoMantenimiento);
             }
-           
 
-       
+
+
 
             return protocolo;
           

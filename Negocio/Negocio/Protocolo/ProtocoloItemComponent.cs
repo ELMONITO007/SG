@@ -30,15 +30,19 @@ namespace Business
             int a = 0;
             foreach (var item in lista)
             {
-              
-                ItemNorma itemNorma = new ItemNorma();
-                itemNorma.Id = itemNormas[a].Id;
-                itemNorma.nombre=itemNormas[a].nombre;
-                itemNorma.valor = item;
-               
-                ProtocoloItem protocoloItem = new ProtocoloItem(protocolo, itemNorma);
-                protocoloItem.valor = item;
-                Create(protocoloItem);
+
+                if (item != "")
+                {
+                    ItemNorma itemNorma = new ItemNorma();
+                    itemNorma.Id = itemNormas[a].Id;
+                    itemNorma.nombre = itemNormas[a].nombre;
+                    itemNorma.valor = item;
+
+                    ProtocoloItem protocoloItem = new ProtocoloItem(protocolo, itemNorma);
+                    protocoloItem.valor = item;
+                    Create(protocoloItem);
+                }
+            
                 a++;
             }
 

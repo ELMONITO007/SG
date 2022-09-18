@@ -94,14 +94,14 @@ namespace Bussiness
             item = tipoHerramienta.ReadBy(id);
             NormaComponent norma = new NormaComponent();
             List<TipoHerramienta> instumentos = new List<TipoHerramienta>();
-            instumentos = InstrumentosParaUnaHerramienta(id);
+
             Norma unaNorma = new Norma();
             unaNorma = norma.ReadByTipoHerramienta(id);
 
 
             TipoHerramienta tipo = new TipoHerramienta(null, instumentos, unaNorma);
             tipo.Id = item.Id;
-         
+
             tipo.subTipo = item.subTipo;
             tipo.tipoEnsayo = item.tipoEnsayo;
             tipo.tipoHerramienta = item.tipoHerramienta;
@@ -116,22 +116,8 @@ namespace Bussiness
             TipoHerramientaDAC tipoHerramienta = new TipoHerramientaDAC();
             TipoHerramienta item = new TipoHerramienta();
             item = tipoHerramienta.ReadBy(campo);
-            NormaComponent norma = new NormaComponent();
-            List<TipoHerramienta> instumentos = new List<TipoHerramienta>();
-            instumentos = InstrumentosParaUnaHerramienta(item.Id);
-            Norma unaNorma = new Norma();
-            unaNorma = norma.ReadByTipoHerramienta(item.Id);
-            itemHerramientaComponent itemHerramientaComponent = new itemHerramientaComponent();
+            return ReadBy(item.Id);
 
-            TipoHerramienta tipo = new TipoHerramienta(itemHerramientaComponent.ReadbyHerramienta(item.Id), instumentos, unaNorma);
-            tipo.Id = item.Id;
-
-            tipo.subTipo = item.subTipo;
-            tipo.tipoEnsayo = item.tipoEnsayo;
-            tipo.tipoHerramienta = item.tipoHerramienta;
-            tipo.tipoUso = item.tipoUso;
-
-            return tipo;
         }
 
         public void Update(TipoHerramienta entity)

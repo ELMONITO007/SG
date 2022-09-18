@@ -112,6 +112,7 @@
     <Compile Include="Negocio\Protocolo\ItemNormaComponent.cs" />
     <Compile Include="Negocio\Protocolo\NormaComponent.cs" />
     <Compile Include="Negocio\Protocolo\ProtocoloComponent.cs" />
+    <Compile Include="Negocio\Protocolo\ProtocoloDetalleComponent.cs" />
     <Compile Include="Negocio\Protocolo\ProtocoloItemComponent.cs" />
     <Compile Include="Negocio\Protocolo\ProtocoloMasivo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -19,11 +19,11 @@ namespace Data
             Herramienta herramienta = new Herramienta();
             herramienta.Id = GetDataValue<int>(dr, "Id_herramienta");
             Laboratorio laboratorio = new Laboratorio();
-            laboratorio.Id = GetDataValue<int>(dr, "Id_Laboratiorio");
+            laboratorio.Id = GetDataValue<int>(dr, "Id_Laboratorio");
             Protocolo protocolo = new Protocolo(herramienta, laboratorio);
             protocolo.codigo = GetDataValue<string>(dr, "codigo");
             protocolo.conclusion = GetDataValue<string>(dr, "conclusion");
-            protocolo.email = GetDataValue<string>(dr, "email");
+
             protocolo.fechaEnsayo = GetDataValue<string>(dr, "fechaEnsayo");
             protocolo.usuario.Id = GetDataValue<int>(dr, "id_usuario");
             protocolo.hmedadad = GetDataValue<int>(dr, "humedad");
@@ -39,7 +39,7 @@ namespace Data
 
         public Protocolo Create(Protocolo entity)
         {
-            const string SQL_STATEMENT = "insert into protocolo (Id_Laboratiorio,codigo,conclusion,email,fechaEnsayo,humedad,observaciones,temperatura,activo,id_herramienta,Id_Usuario) values(@Id_Laboratiorio,@codigo,@conclusion,@email,@fechaEnsayo,@humedad,@observaciones,@temperatura,1,@id_herramienta,@id_usuario) ";
+            const string SQL_STATEMENT = "insert into protocolo (Id_Laboratorio,codigo,conclusion,fechaEnsayo,humedad,observaciones,temperatura,activo,id_herramienta,Id_Usuario) values(@Id_Laboratiorio,@codigo,@conclusion,@fechaEnsayo,@humedad,@observaciones,@temperatura,1,@id_herramienta,@id_usuario) ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -49,7 +49,7 @@ namespace Data
                 db.AddInParameter(cmd, "@Id_Laboratiorio", DbType.Int32, entity.laboratorio.Id);
                 db.AddInParameter(cmd, "@codigo", DbType.String, entity.codigo);
                 db.AddInParameter(cmd, "@conclusion", DbType.String, entity.conclusion);
-                db.AddInParameter(cmd, "@email", DbType.String, entity.email);
+
                 db.AddInParameter(cmd, "@fechaEnsayo", DbType.String, entity.fechaEnsayo);
                 db.AddInParameter(cmd, "@humedad", DbType.Int32, entity.hmedadad);
                 db.AddInParameter(cmd, "@observaciones", DbType.String, entity.observaciones);

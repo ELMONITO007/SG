@@ -12,7 +12,7 @@
 <link href="~/Content/css/style.css" rel="stylesheet" />
 
 <!-- row -->
-<div class="card" style="height:1754px;width:1220px">
+<div class="card" style="height:1754px;width:1220px;background-color:dodgerblue">
 
     <div class="card-header">
         <div class="d-flex align-items-center mb-4 flex-wrap">
@@ -23,16 +23,9 @@
 
         <div class="d-flex align-items-end mb-4 flex-wrap">
 
-            @if (Model.herramienta.sector.empresa == "Transener")
-            {
-
-                <img src="~/img/logoTRProtocolo.png" style="align-items:end" />
-            }
-            @if (Model.herramienta.sector.empresa == "Transba")
-            {
-
-                <img src="~/img/logoTBProtocolo.png" />
-            }
+          
+                <img src="~/img/Sudamerican Green_free-file.png" style="align-items:end" />
+               
         </div>
     </div>
     <div class="container-fluid">
@@ -74,7 +67,7 @@
                                     </div>
                                     <div class="mb-3 d-flex">
                                         <h5 class="mb-1 fs-14 custom-label">Solicitado por:</h5>
-                                        <span>@Model.herramienta.sector.sector - @Model.herramienta.sector.estacion</span>
+                                        <span>@Model.herramienta.usuarios.Nombre @Model.herramienta.usuarios.Apellido</span>
                                     </div>
 
                                 </div>
@@ -164,46 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-10">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <div class="card" style="max-width:200px">
-                                <div class="card-header">
-                                    <h4 class="fs-10 d-block">Realizado por</h4>
-
-                                </div>
-                                <div class="card-body">
-                                    <img src="~/img/Firmas_cover.png" width="100" height="100" />
-
-
-                                </div>
-                                <div class="card-footer"> @Model.usuario.nombre  @Model.usuario.apellido   </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-5">
-                            <div class="card"style="max-width:200px">
-                                <div class="card-header">
-                                    <h4 class="fs-10 d-block">Autorizado por</h4>
-
-                                </div>
-                                <div class="card-body">
-                                    <img src="~/img/Firmas_cover.png" width="100" height="100" />
-
-
-                                </div>
-                                <div class="card-footer"> Facundo Maldonado  </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
+     
         </div>
 
         <div class="row">

@@ -160,7 +160,7 @@ namespace Business
                     TipoHerramienta tipoHerramienta = new TipoHerramienta();
                     tipoHerramienta = tipoHerramientaComponent.ObtenerTipoPorCodigo(tipo);
                     herramienta.Id = 0;
-                    herramienta = new Herramienta(null, tipoHerramienta,null);
+                    herramienta = new Herramienta(null, tipoHerramienta);
                     herramienta.codigoViejo = cargaInicial.codigo;
                     tipos.Add(tipoHerramienta.tipoHerramienta);
                     result.Add(herramienta);

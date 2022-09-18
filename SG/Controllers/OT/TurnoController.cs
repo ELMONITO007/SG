@@ -42,37 +42,8 @@ namespace TCT.Controllers.Negocio.OT
 
                 ViewBag.laboratorios = new SelectList(sectores, "Id", "nombre");
 
-
-
-                if (semana == null || año == null)
-                {
-                    int year = int.Parse(DateTime.Now.Year.ToString());
-                    int week = ordenTrabajoComponent.ObtenerNumeroSemana(DateTime.Now.ToString("dd-MM-yyyy")) - 1;
-                   
-                    ViewBag.semana = week;
-                    ViewBag.fechaInicio = DateTime.Now.ToString("dd-MM-yyyy");
-                    ViewBag.fechaFinal = DateTime.Now.AddDays(5).ToString("dd-MM-yyyy");
-
-                    ordenTrabajo.turnos = turnoComponent.ReadByFechaYLaboratorioSemana(week, year, usuarios.Id);
-                    ordenTrabajo.turnosEnsayo= turnoComponent.VerTurnosDeEnsayoSemana(week, year, usuarios.Id, "Turno para ensayo asignado");
-
-                    return View(ordenTrabajo);
-                }
-                else
-                {
-                    int year = int.Parse(año);
-                    int week = int.Parse(semana);
-                    ViewBag.semana = week;
-                    DateTime f = ordenTrabajoComponent.FirstDateOfWeekISO8601(year, week);
-                    ViewBag.fechaInicio = f.ToString("dd-MM-yyyy");
-                    ViewBag.fechaFinal = f.AddDays(5).ToString("dd-MM-yyyy");
-
-                    ordenTrabajo.turnos = turnoComponent.ReadByFechaYLaboratorioSemana(week, year, usuarios.Id);
-
-                    ordenTrabajo.turnosEnsayo = turnoComponent.VerTurnosDeEnsayoSemana(week, year, usuarios.Id, "Turno para ensayo asignado");
-                    ordenTrabajo.turnosEnsayoFin = turnoComponent.ReadByFechaFinalLaboratorioEstado(week, year, usuarios.Id, "Turno para ensayo asignado");
-                    return View(ordenTrabajo);
-                }
+                return View(ordenTrabajo);
+                
             }
             catch (Exception e)
             {
@@ -114,7 +85,7 @@ namespace TCT.Controllers.Negocio.OT
                 }
                 else
                 {
-                    return RedirectToAction("index","ordenTrabajo",new { id= ordenTrabajo.Id });
+                    return RedirectToAction("index","ordenTrabajo",new { error= "Turno Asignado correctamente" });
                 }
                
                 // TODO: Add insert logic here
@@ -145,33 +116,12 @@ namespace TCT.Controllers.Negocio.OT
                 ordenTrabajo.Turno.FechaRecepcionMateriales = Fechas.FechaUsa(ordenTrabajo.Turno.FechaRecepcionMateriales);
                 ordenTrabajo.Turno.FechaComienzoDeEnsayo = Fechas.FechaUsa(ordenTrabajo.Turno.FechaComienzoDeEnsayo);
                 ordenTrabajo.Turno.FechaFinDeEnsayo = Fechas.FechaUsa(ordenTrabajo.Turno.FechaFinDeEnsayo);
-                if (semana == null || año == null)
-                {
-                    int year = int.Parse(DateTime.Now.Year.ToString());
-                    int week = ordenTrabajoComponent.ObtenerNumeroSemana(DateTime.Now.ToString("dd-MM-yyyy")) - 1;
-                    ViewBag.semana = week;
-                    ViewBag.fechaInicio = DateTime.Now.ToString("dd-MM-yyyy");
-                    ViewBag.fechaFinal = DateTime.Now.AddDays(5).ToString("dd-MM-yyyy");
-
-                    ordenTrabajo.turnos = turnoComponent.ReadByFechaYLaboratorioSemana(week, year, usuarios.Id);
+               
 
 
                     return View(ordenTrabajo);
-                }
-                else
-                {
-                    int year = int.Parse(año);
-                    int week = int.Parse(semana);
-                    ViewBag.semana = week;
-                    DateTime f = ordenTrabajoComponent.FirstDateOfWeekISO8601(year, week);
-                    ViewBag.fechaInicio = f.ToString("dd-MM-yyyy");
-                    ViewBag.fechaFinal = f.AddDays(5).ToString("dd-MM-yyyy");
-
-                    ordenTrabajo.turnos = turnoComponent.ReadByFechaYLaboratorioSemana(week, year, usuarios.Id);
-
-
-                    return View(ordenTrabajo);
-                }
+                
+               
             }
             catch (Exception e)
             {
@@ -208,8 +158,8 @@ namespace TCT.Controllers.Negocio.OT
                 turno.Id = int.Parse(collection.Get("Turno.Id"));
                 TurnoComponent turnoComponent = new TurnoComponent();
                 turnoComponent.UpdateFechaFinYcomienzo(turno);
-                return RedirectToAction("index", "ordenTrabajo" );
-                
+                return RedirectToAction("index", "ordenTrabajo", new { error = "Turno Confirmado correctamente" });
+
 
                 // TODO: Add insert logic here
 

@@ -60,6 +60,7 @@
     <Compile Include="Negocio\Laboratorio.cs" />
     <Compile Include="Negocio\Norma.cs" />
     <Compile Include="Negocio\Protocolo.cs" />
+    <Compile Include="Negocio\ProtocoloDetalle.cs" />
     <Compile Include="Negocio\ProtocoloItem.cs" />
     <Compile Include="OT\CargaInicialHerramienta.cs" />
     <Compile Include="OT\EstadoOrdenEnsayo.cs" />

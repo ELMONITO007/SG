@@ -184,14 +184,9 @@ namespace Negocio
                             ws.Cells[cell, 4].Value = subItem.modelo;
                             ws.Cells[cell, 5].Value = subItem.Estado;
                             ws.Cells[cell, 6].Value = subItem.numeroSerie;
-                            if (subItem.usuarios != null)
-                            {
-                                ws.Cells[cell, 7].Value = subItem.usuarios.UserName;
-                            }
-                            else
-                            {
-                                ws.Cells[cell, 7].Value = "";
-                            }
+                           
+                                ws.Cells[cell, 7].Value =subItem.usuarios.UserName;
+                            
 
 
                             ws.Cells[cell, 8].Value = DateTime.Now.ToString("dd-MM-yyyy");

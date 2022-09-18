@@ -110,12 +110,12 @@ namespace Bussiness
         {
             HerramientaDAC herramientaDAC = new HerramientaDAC();
             Herramienta item = new Herramienta();
-          
+
             item = herramientaDAC.ReadBy(id);
 
-            Usuarios usuarios = new Usuarios();
-            UsuariosComponent usuariosComponent = new UsuariosComponent();
-            usuarios = usuariosComponent.ReadBy(item.usuarios.Id);
+            Usuarios sector = new Usuarios();
+            UsuariosComponent sectorComponent = new UsuariosComponent();
+            sector = sectorComponent.ReadBy(item.usuarios.Id);
             TipoHerramienta tipo = new TipoHerramienta();
             TipoHerramientaComponent tipoHerramientaComponent = new TipoHerramientaComponent();
             tipo = tipoHerramientaComponent.ReadBy(item.tipoHerramienta.Id);
@@ -125,7 +125,7 @@ namespace Bussiness
             List<Protocolo> protocolos = new List<Protocolo>();
             ProtocoloComponent protocoloComponent = new ProtocoloComponent();
             protocolos = protocoloComponent.ReadByHerramienta(id);
-            Herramienta herramienta = new Herramienta(herramientaItems,usuarios,tipo,protocolos,item.codigoHerramienta);
+            Herramienta herramienta = new Herramienta(herramientaItems, sector, tipo, protocolos, item.codigoHerramienta);
             herramienta.codigo = item.codigo;
             herramienta.Estado = item.Estado;
             herramienta.Id = item.Id;
@@ -136,7 +136,6 @@ namespace Bussiness
             herramienta.vencida = item.vencida;
             herramienta.proximaActualizacion = item.proximaActualizacion;
             herramienta.codigoViejo = item.codigoViejo;
-            herramienta.usuarios = usuarios;
             return herramienta;
         }
 

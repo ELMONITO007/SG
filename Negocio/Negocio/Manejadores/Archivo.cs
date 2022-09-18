@@ -104,6 +104,19 @@ namespace Business
 
 
         }
+        public static void VerificarSiExsiteArchivo(string orden)
+
+        {
+            string p = path + orden + @"\SubidaCompleta.xls";
+
+            if (File.Exists(orden))
+            {
+                File.Delete(orden);
+
+            }
+
+
+        }
         public static bool VerificarArchivoSubidaAbierto(int orden)
 
 
