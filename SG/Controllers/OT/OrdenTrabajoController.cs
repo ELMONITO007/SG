@@ -291,7 +291,7 @@ namespace TCT.Controllers.Negocio.OT
             return View();
         }
 
-        [AuthorizerUser(_roles: "Tecnico")]
+        [AuthorizerUser(_roles: "TCT_Laboratorio,Tecnico")]
         public ActionResult Recibido(int id)
         {
             Usuarios usuarios = new Usuarios();
