@@ -20,7 +20,7 @@
      <thead>
          <tr>
              <th>
-                 @Html.DisplayNameFor(model => model.UserName)
+          Usuario
              </th>
              <th>
                  @Html.DisplayNameFor(model => model.Email)
@@ -34,7 +34,7 @@
              <th>
                 Sector
              </th>
-             <th>Acciones</th>
+          
          </tr>
          </thead>
        <tbody>
@@ -59,12 +59,7 @@
             @{string p = "/Usuario/details/" + item.Id;
                 string a = "/Usuario/edit/" + item.Id;
                 string d = "/Usuario/delete/" + item.Id; }
-            <td>
-      
-                <a href="@a" class="btn btn-success shadow btn-xs sharp"><i class="fa fa-edit"></i></a>
-                <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa bi-arrow-down"></i></a>
-
-            </td>
+         
         </tr>
         
     }
