@@ -18,7 +18,7 @@ namespace Negocio.Herramienta
 
             Instrumento instrumento = new Instrumento();
             InstrumentoDAC instrumentoDAC = new InstrumentoDAC();
-            instrumento = instrumentoDAC.ReadbyCodigo(codigo);
+            instrumento = instrumentoDAC.ReadbyCodigo("TT0001");
             LaboratorioComponent  laboratorioComponent = new LaboratorioComponent();
             Instrumento result = new Instrumento(laboratorioComponent.ReadBy(instrumento.laboratorio.Id));
             result.Id=instrumento.Id;

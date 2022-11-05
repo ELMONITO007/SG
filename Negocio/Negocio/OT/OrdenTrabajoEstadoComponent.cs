@@ -239,7 +239,7 @@ namespace Negocio
             ordenTrabajoEstado = CrearEstado(ordenEnsayo, 8);
             List<string> datos = Texto.SepararTextoPorCaracter('-', ordenTrabajoEstado.EstadoOrdenEnsayo.texto);
 
-            ordenTrabajoEstado.observaciones = datos[0]+ ordenEnsayo.Usuario.UserName + datos[1] +" "+ DateTime.Now.ToString("dd-MM-yyyy");
+            ordenTrabajoEstado.observaciones = datos[0]+ ordenEnsayo.Usuario.UserName + datos[0] +" "+ DateTime.Now.ToString("dd-MM-yyyy");
 
 
             Create(ordenTrabajoEstado);
