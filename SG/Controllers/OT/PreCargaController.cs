@@ -71,7 +71,7 @@ namespace TrabajoConTensionV2.Controllers.OT
                     }
 
                   
-                    else
+                    else if(file.FileName=="SubidaOE"+ordenTrabajo.Id+".xls")
                     {
                         Archivo.VerificarSiExsiteArchivoSubida(id);
                         file.SaveAs(Server.MapPath("~/Ensayos/") + id + "/SubidaCompleta.xls");
@@ -89,6 +89,10 @@ namespace TrabajoConTensionV2.Controllers.OT
                         }
 
 
+                    }
+                    else
+                    {
+                        error = "El archivo que subio debe ser SubidaOE"+ordenTrabajo.Id+".xls";
                     }
                 }
                 else

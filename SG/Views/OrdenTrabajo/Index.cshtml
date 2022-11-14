@@ -114,7 +114,7 @@
                                                     @Html.ActionLink("Ensayar", "CreateMasivo", "Protocolo", new { id = item.Id }, null)
                                                     <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>
 
-                                                    @Html.ActionLink("Agregar Guia", "CreateGuia", "Turno", new { id = item.Id }, null)
+                                                  
 
 
                                                     @if (item.guia != null)
@@ -134,18 +134,13 @@
                                                     @Html.ActionLink("Ensayar", "Ensayar", "ordenTrabajo", new { id = item.Id }, null)|
                                                     <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>|
 
-                                                    @Html.ActionLink("Agregar Guia", "CreateGuia", "Turno", new { id = item.Id }, null)
+                                                   
 
-
-                                                    @if (item.guia != null)
-                                                    {
-                                                        @Html.ActionLink("Modificar Guia", "UpdateGuia", "Turno", new { id = item.Id }, null)
-                                                    }
 
 
                                                 </td>
                                             }
-                                            if (item.Estado.EstadoOrdenEnsayo.estadoFinal == "Ensayado")
+                                            if (item.Estado.EstadoOrdenEnsayo.estadoFinal == "Cerrado")
                                             {
 
                                                 <td>
@@ -153,13 +148,9 @@
 
                                                     <a href="@d" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-history"></i></a>|
 
-                                                    @Html.ActionLink("Agregar Guia", "CreateGuia", "Turno", new { id = item.Id }, null)
+                                                 
 
 
-                                                    @if (item.guia != null)
-                                                    {
-                                                        @Html.ActionLink("Modificar Guia", "UpdateGuia", "Turno", new { id = item.Id }, null)
-                                                    }
 
 
                                                 </td>

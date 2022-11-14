@@ -98,8 +98,7 @@ namespace TCT.Controllers.Negocio.OT
 
 
 
-        // GET: OrdenTrabajo/Create
-        //[AuthorizerUser(_roles: "TCT_Supervisor")]
+        [AuthorizerUser(_roles: "TCT_Laboratorio,Tecnico")]
         public ActionResult Create()
         {
             #region Laboratorio
@@ -371,20 +370,28 @@ namespace TCT.Controllers.Negocio.OT
 
                 if (file != null)
                 {
-                    string path = Server.MapPath("~/Ensayos/") + id + @"\ensayoN" + id + ".xls";
-                    Archivo.VerificarSiExsiteArchivo(path);
-                    file.SaveAs(Server.MapPath("~/Ensayos/") + id + @"\ensayoN" + id + ".xls");
+                    if (file.FileName == "EnsayoN" + id + ".xls")
+                    {
+                        string path = Server.MapPath("~/Ensayos/") + id + @"\ensayoN" + id + ".xls";
+                        Archivo.VerificarSiExsiteArchivo(path);
+                        file.SaveAs(Server.MapPath("~/Ensayos/") + id + @"\ensayoN" + id + ".xls");
 
-                  
-                    OrdenTrabajoComponent ordenTrabajo = new OrdenTrabajoComponent();
-                    ordenTrabajo.Ensayar(id, usuarios.Id,path);
 
-                    error = "Ensayo Realizado Correctamente";
+                        OrdenTrabajoComponent ordenTrabajo = new OrdenTrabajoComponent();
+                        ordenTrabajo.Ensayar(id, usuarios.Id, path);
+
+                        error = "Ensayo Realizado Correctamente";
+                    }
+                    else
+                    {
+                        error = "El archivo que subio debe ser SubidaN" + id + ".xls";
+                    }
+                   
                 }
 
                 else
                 {
-                    error = "No subio ningu archivo";
+                    error = "No subio ningun archivo";
                 }
 
 

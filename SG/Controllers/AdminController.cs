@@ -15,6 +15,11 @@ namespace SG.Controllers
         {
             return View();
         }
+        [AuthorizerUser(_roles: "Tecnico")]
+        public ActionResult Tecnico()
+        {
+            return View();
+        }
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)

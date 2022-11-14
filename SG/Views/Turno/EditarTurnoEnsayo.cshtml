@@ -16,6 +16,12 @@
         @Html.HiddenFor(m => m.Id)
         <div class="col-xl-9 col-xxl-8">
             <div class="card">
+                <div class="alert alert-info solid alert-dismissible fade show">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    @ViewBag.errorTurno
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                    </button>
+                </div>
                 <div class="card-body">
                     @Html.HiddenFor(m => m.Turno.Id)
                     <div class="form-validation">
@@ -70,7 +76,7 @@
                                 </div>
 
                                 <hr />
-                           
+
                                 <h5>Observaciones</h5>
                                 @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control", @type = "text", @readonly = "readonly" } })
 
